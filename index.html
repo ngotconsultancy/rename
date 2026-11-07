@@ -1,0 +1,337 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Đặt tên file Quang</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: phiếu một cột 640px như bảng slate của phòng dựng — chọn bằng nút chạm, tên chuẩn dính ở đáy. Dark-first, tông phim analog */
+:root{
+  --bg:#141312; --surface:#1e1c1a; --ink:#ece5d8; --muted:#a19887; --line:#35312c;
+  --accent:#d39a55; --accent-soft:#3a2c1c; --on-accent:#141312; --ok:#8fbf98; --bad:#e6826f; --warn:#e0b45e;
+  --slate:#0c0b0a; --slate-ink:#f1ebdf;
+  --display:"Fraunces",Georgia,serif; --body:"Be Vietnam Pro",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#f3efe7; --surface:#fbf8f2; --ink:#1c1a17; --muted:#6b6458; --line:#ddd4c4;
+  --accent:#9a5f22; --accent-soft:#f0e2cf; --on-accent:#fbf8f2; --ok:#3f6b4a; --bad:#a3402f; --warn:#8a5d14;
+  --slate:#1c1a17; --slate-ink:#f3efe7; color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#f3efe7; --surface:#fbf8f2; --ink:#1c1a17; --muted:#6b6458; --line:#ddd4c4;
+  --accent:#9a5f22; --accent-soft:#f0e2cf; --on-accent:#fbf8f2; --ok:#3f6b4a; --bad:#a3402f; --warn:#8a5d14;
+  --slate:#1c1a17; --slate-ink:#f3efe7; color-scheme:light}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:640px;margin:0 auto;padding-block:28px 64px;display:flex;flex-direction:column;gap:22px}
+.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(32px,7vw,44px);line-height:1.08;margin:6px 0 0;text-wrap:balance}
+.sub{color:var(--muted);margin:8px 0 0}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
+.tab{font:inherit;font-weight:600;background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);padding:10px 14px;cursor:pointer;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.panel{display:flex;flex-direction:column;gap:22px}
+.step{display:flex;flex-direction:column;gap:9px}
+.step-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.step-h b{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase}
+.step-h span{font-size:13px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font:inherit;font-size:14px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:6px;padding:8px 12px;display:flex;flex-direction:column;align-items:flex-start;line-height:1.25;text-align:left}
+.chip small{font-size:11.5px;color:var(--muted);margin-top:2px}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.chip[aria-pressed="true"] small{color:var(--on-accent);opacity:.85}
+.chip .code{font-weight:600}
+input[type=date],input[type=text],input[type=number],textarea{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 12px;width:100%}
+textarea{font-family:var(--mono);font-size:13.5px;min-height:120px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:440px){.row2{grid-template-columns:1fr}}
+label.f{display:flex;flex-direction:column;gap:5px;font-size:13px;color:var(--muted);font-weight:600}
+label.inline{display:flex;flex-direction:row;align-items:center;gap:8px;font-size:13.5px;color:var(--muted);font-weight:500}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.hint{font-size:13px;min-height:1em;color:var(--muted)}
+.hint.warn{color:var(--warn)}
+.result{background:var(--slate);color:var(--slate-ink);border-radius:8px;padding:18px;display:flex;flex-direction:column;gap:12px;position:sticky;bottom:calc(10px + env(safe-area-inset-bottom,0px));border:1px solid var(--line)}
+.result .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.65}
+.result .name{font-family:var(--mono);font-size:16px;word-break:break-all;line-height:1.45;color:var(--slate-ink)}
+.result .list{font-family:var(--mono);font-size:13px;display:flex;flex-direction:column;gap:2px;max-height:120px;overflow:auto;word-break:break-all;opacity:.85}
+.result .path{font-size:13.5px;opacity:.85}
+.result .path b{font-family:var(--mono);font-weight:500}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+button.main{font:inherit;font-weight:700;cursor:pointer;border:0;border-radius:6px;padding:11px 18px;background:var(--accent);color:var(--on-accent)}
+button.ghost{font:inherit;font-weight:600;cursor:pointer;border:1px solid currentColor;border-radius:6px;padding:10px 14px;background:transparent;color:inherit;opacity:.8}
+.recent{display:flex;flex-direction:column}
+.recent-item{display:flex;gap:8px;align-items:center;font-family:var(--mono);font-size:12.5px;border-bottom:1px dashed var(--line);padding:7px 0}
+.recent-item span{flex:1;min-width:0;word-break:break-all;color:var(--muted)}
+.recent-item button{font:inherit;font-family:var(--body);font-size:12px;font-weight:600;border:0;background:none;color:var(--accent);cursor:pointer;padding:4px}
+.ck{border:1px solid var(--line);border-left-width:3px;border-radius:6px;background:var(--surface);padding:10px 12px;display:flex;flex-direction:column;gap:4px}
+.ck.ok{border-left-color:var(--ok)} .ck.bad{border-left-color:var(--bad)}
+.ck .n{font-family:var(--mono);font-size:13px;word-break:break-all}
+.ck .v{font-size:13px;font-weight:700}
+.ck.ok .v{color:var(--ok)} .ck.bad .v{color:var(--bad)}
+.ck ul{margin:0;padding-left:18px;font-size:13px;color:var(--muted)}
+.ck .fix{font-family:var(--mono);font-size:13px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ck .fix span{word-break:break-all}
+.ck .fix button{font:inherit;font-family:var(--body);font-size:12px;font-weight:700;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink);cursor:pointer;padding:3px 9px}
+.check-out{display:flex;flex-direction:column;gap:8px}
+.foot{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+.mono{font-family:var(--mono)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Quang · Personal Branding</span>
+    <h1>Đặt tên file Quang</h1>
+    <p class="sub">Chọn từng bước, tên chuẩn và folder cần lưu hiện ở đáy trang. Bấm Copy rồi dán vào Drive.</p>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="tab-make" aria-selected="true" aria-controls="p-make">Tạo tên</button>
+    <button class="tab" role="tab" id="tab-check" aria-selected="false" aria-controls="p-check">Kiểm tra tên</button>
+  </div>
+
+  <div class="panel" id="p-make" role="tabpanel" aria-labelledby="tab-make">
+    <div class="step">
+      <div class="step-h"><b>1 · Đây là gì?</b><span>Quyết định file lưu ở folder nào</span></div>
+      <div class="chips" id="c-type"></div>
+    </div>
+
+    <div class="step" id="s-kenh">
+      <div class="step-h"><b>2 · Kênh</b><span id="kenh-note"></span></div>
+      <div class="chips" id="c-kenh"></div>
+    </div>
+
+    <div class="step" id="s-series" hidden>
+      <div class="step-h"><b>Thuộc series?</b></div>
+      <div class="chips" id="c-series"></div>
+    </div>
+
+    <div class="step" id="s-tn" hidden>
+      <div class="step-h"><b>Loại tài nguyên</b></div>
+      <div class="chips" id="c-tn"></div>
+    </div>
+
+    <div class="step">
+      <div class="step-h"><b>3 · Ngày</b><span id="date-note">Ngày quay</span></div>
+      <div class="row2">
+        <label class="f" for="f-date">Chọn ngày<input type="date" id="f-date"></label>
+        <label class="inline" for="f-noday" style="padding-top:22px"><input type="checkbox" id="f-noday"> Không nhớ ngày, chỉ ghi tháng</label>
+      </div>
+    </div>
+
+    <div class="step" id="s-desc">
+      <div class="step-h"><b>4 · Mô tả ngắn</b><span>Tiếng Việt có dấu, tối đa 6 từ</span></div>
+      <input type="text" id="f-desc" value="Sale vs Marketing" placeholder="VD: Decode Grab, Khám Suni Studio, FreeTalk EP5 Nợ lương">
+      <div class="hint" id="desc-hint"></div>
+    </div>
+
+    <div class="step" id="s-coach" hidden>
+      <div class="step-h"><b>4 · Thông tin buổi coaching</b></div>
+      <div class="row2">
+        <label class="f" for="f-studio">Tên studio<input type="text" id="f-studio" value="Bee Studio"></label>
+        <label class="f" for="f-client">Tên khách<input type="text" id="f-client" value="Nguyễn Hùng"></label>
+      </div>
+      <label class="f" for="f-session">Buổi (không bắt buộc)<input type="text" id="f-session" placeholder="VD: Khai thông 1"></label>
+    </div>
+
+    <div class="step" id="s-multi">
+      <div class="step-h"><b>5 · Nhiều file cùng lúc?</b><span>Không bắt buộc</span></div>
+      <div class="row2">
+        <label class="f" for="f-count">Số file (tự đánh số _01, _02…)<input type="number" id="f-count" min="1" max="99" value="1" inputmode="numeric"></label>
+        <label class="f" for="f-ext">Đuôi file<input type="text" id="f-ext" placeholder="mp4, mov, jpg… (trống nếu là folder)"></label>
+      </div>
+    </div>
+
+    <div class="result" aria-live="polite">
+      <span class="lbl" id="r-lbl">Tên chuẩn</span>
+      <div class="name" id="r-name"></div>
+      <div class="list" id="r-list" hidden></div>
+      <div class="path">Lưu vào: <b id="r-path"></b></div>
+      <div class="btns">
+        <button type="button" class="main" id="b-copy">Copy tên</button>
+        <button type="button" class="ghost" id="b-copy-path">Copy đường dẫn folder</button>
+      </div>
+    </div>
+
+    <div class="step" id="recent-wrap" hidden>
+      <div class="step-h"><b>Vừa tạo gần đây</b><span>Chỉ lưu trên máy này</span></div>
+      <div class="recent" id="recent"></div>
+    </div>
+  </div>
+
+  <div class="panel" id="p-check" role="tabpanel" aria-labelledby="tab-check" hidden>
+    <div class="step">
+      <div class="step-h"><b>Dán tên cần kiểm tra</b><span>Mỗi dòng 1 tên</span></div>
+      <textarea id="c-in" spellcheck="false">2026.11.02_NSC_Sale vs Marketing.mp4
+2026.10.10_Bee Studio_Nguyễn Hùng
+BOOKING.COM.mp4
+010. 2026.10.22 - Tuyen ai truoc.mov
+2026.08.26 - Xu ly coc KH.mp4</textarea>
+      <div class="btns"><button type="button" class="main" id="c-run">Kiểm tra</button></div>
+    </div>
+    <div class="check-out" id="c-out"></div>
+  </div>
+
+  <p class="foot">Công thức: <span class="mono">NGÀY_KÊNH_Mô tả</span> · Coaching: <span class="mono">NGÀY_Studio_Tên khách</span>. Kênh: NNN · NSC · TXS (Thợ xây Studio) · WS · CHUNG. Folder tháng viết <span class="mono">2026-11</span>. Reel NSC chỉ lưu 1 bản trong NSC › REEL, dùng cho cả Fanpage và TikTok.</p>
+</div>
+
+<script>
+const ROOT='QUANG - PERSONAL BRANDING';
+const TYPES=[
+ {id:'SOURCE',label:'File gốc vừa quay',sub:'Chưa dựng',dateNote:'Ngày quay'},
+ {id:'VIDEO',label:'Video đã dựng',sub:'Sẵn sàng đăng',dateNote:'Ngày đăng hoặc ngày quay'},
+ {id:'ANH',label:'Ảnh đăng Fanpage NSC',sub:'Ảnh, poster',dateNote:'Ngày đăng'},
+ {id:'KICHBAN',label:'Kịch bản',sub:'Script, plan',dateNote:'Ngày viết'},
+ {id:'WS',label:'Workshop / khoá học',sub:'Clip, BTS, file gốc',dateNote:'Ngày diễn ra'},
+ {id:'COACH',label:'Buổi coaching',sub:'1 folder mỗi buổi',dateNote:'Ngày coaching'},
+ {id:'TN',label:'Tài nguyên chung',sub:'Cảnh trám, âm thanh, ảnh',dateNote:'Ngày quay / tạo'}
+];
+const KENH=[['NNN','Nghề Nặng Nghệ'],['NSC','Fanpage + TikTok'],['TXS','Thợ xây Studio'],['CHUNG','Dùng nhiều kênh']];
+const SERIES={NNN:[['','Không'],['KHAM','Khám studio']],NSC:[['','Không'],['FREETALK','FreeTalk']]};
+const TN=[['CANH-TRAM','Cảnh trám, b-roll'],['AM-THANH','Âm thanh đã lọc'],['ANH-CA-NHAN','Ảnh cá nhân'],['MOODBOARD','Moodboard']];
+const state={type:'VIDEO',kenh:'NSC',series:'',tn:'CANH-TRAM'};
+const $=id=>document.getElementById(id);
+const pad=n=>String(n).padStart(2,'0');
+const todayISO=()=>{const d=new Date();return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`};
+const clean=s=>s.replace(/[\/\\:*?"<>|_]+/g,' ').replace(/\s+/g,' ').trim();
+
+function allowedKenh(){
+  if(state.type==='VIDEO') return ['NNN','NSC','TXS'];
+  if(state.type==='ANH') return ['NSC'];
+  if(['SOURCE','KICHBAN'].includes(state.type)) return ['NNN','NSC','TXS','CHUNG'];
+  return [];
+}
+function chip(code,label,on,fn){const b=document.createElement('button');b.type='button';b.className='chip';b.setAttribute('aria-pressed',on);
+  b.innerHTML=`<span class="code"></span><small></small>`;b.querySelector('.code').textContent=code;b.querySelector('small').textContent=label;b.addEventListener('click',fn);return b}
+function render(){
+  const ct=$('c-type');ct.innerHTML='';
+  TYPES.forEach(t=>ct.appendChild(chip(t.label,t.sub,state.type===t.id,()=>{state.type=t.id;fixKenh();render();build();save()})));
+  const ak=allowedKenh();$('s-kenh').hidden=!ak.length;
+  $('kenh-note').textContent=state.type==='ANH'?'Ảnh đăng chỉ có ở NSC':state.type==='VIDEO'?'Video lưu theo kênh đăng':'';
+  const ck=$('c-kenh');ck.innerHTML='';
+  KENH.filter(k=>ak.includes(k[0])).forEach(([c,l])=>ck.appendChild(chip(c,l,state.kenh===c,()=>{state.kenh=c;state.series='';render();build();save()})));
+  const showSeries=state.type==='VIDEO'&&SERIES[state.kenh];$('s-series').hidden=!showSeries;
+  const cs=$('c-series');cs.innerHTML='';
+  if(showSeries) SERIES[state.kenh].forEach(([c,l])=>cs.appendChild(chip(l,c?'Lưu vào folder series':'Lưu theo tháng',state.series===c,()=>{state.series=c;render();build();save()})));
+  $('s-tn').hidden=state.type!=='TN';
+  const tn=$('c-tn');tn.innerHTML='';
+  TN.forEach(([c,l])=>tn.appendChild(chip(c,l,state.tn===c,()=>{state.tn=c;render();build();save()})));
+  const coach=state.type==='COACH';$('s-coach').hidden=!coach;$('s-desc').hidden=coach;
+  $('date-note').textContent=(TYPES.find(t=>t.id===state.type)||{}).dateNote||'';
+}
+function fixKenh(){const ak=allowedKenh();if(ak.length&&!ak.includes(state.kenh)) state.kenh=ak[0];state.series=''}
+function kenhCode(){if(state.type==='WS')return 'WS';if(state.type==='TN')return 'CHUNG';return state.kenh}
+function pathFor(y,m){
+  const ym=`${y} › ${y}-${m}`;
+  switch(state.type){
+    case 'SOURCE': return `02_SOURCE-THO › ${ym}`;
+    case 'KICHBAN': return `01_KICH-BAN › ${ym}`;
+    case 'ANH': return `04_THANH-PHAM › NSC › ANH`;
+    case 'VIDEO':
+      if(state.kenh==='NNN') return state.series==='KHAM'?`04_THANH-PHAM › NNN › SERIES-KHAM-STUDIO`:`04_THANH-PHAM › NNN › ${ym}`;
+      if(state.kenh==='NSC') return state.series==='FREETALK'?`04_THANH-PHAM › NSC › REEL › SERIES-FREETALK`:`04_THANH-PHAM › NSC › REEL › ${ym}`;
+      return `04_THANH-PHAM › THO-XAY-STUDIO › ${ym}`;
+    case 'WS': return `05_WORKSHOP-KHOA-HOC › (folder của workshop đó)`;
+    case 'COACH': return `06_COACHING`;
+    case 'TN': return `03_TAI-NGUYEN-CHUNG › ${state.tn}`;
+  }
+}
+let cur={name:'',list:[],path:''};
+function build(){
+  const iso=$('f-date').value||todayISO();const [y,m,d]=iso.split('-');
+  const dp=$('f-noday').checked?`${y}.${m}`:`${y}.${m}.${d}`;
+  let base,warn='';
+  if(state.type==='COACH'){
+    const st=clean($('f-studio').value),cl=clean($('f-client').value),se=clean($('f-session').value);
+    base=[dp,st||'Studio',cl||'Tên khách'].join('_')+(se?'_'+se:'');
+  } else {
+    const raw=$('f-desc').value,desc=clean(raw);
+    base=`${dp}_${kenhCode()}${desc?'_'+desc:''}`;
+    const w=desc?desc.split(' ').length:0;
+    if(!desc) warn='Nên có mô tả ngắn để sau này tìm lại được.';
+    else if(w>6) warn=`Mô tả đang ${w} từ, nên rút còn 6 từ.`;
+    else if(desc!==raw.trim().replace(/\s+/g,' ')) warn='Đã bỏ các ký tự / \\ : _ để tên không bị lỗi.';
+  }
+  const h=$('desc-hint');h.textContent=warn;h.className='hint'+(warn?' warn':'');
+  const n=Math.max(1,Math.min(99,parseInt($('f-count').value)||1));
+  const ext=$('f-ext').value.trim().replace(/^\.+/,'').toLowerCase();const e=ext?'.'+ext:'';
+  const list=n>1?Array.from({length:n},(_,i)=>`${base}_${pad(i+1)}${e}`):[];
+  cur={name:n>1?list[0]:base+e,list,path:pathFor(y,m)};
+  $('r-name').textContent=n>1?`${base}_01…_${pad(n)}${e}`:cur.name;
+  $('r-lbl').textContent=n>1?`Tên chuẩn · ${n} file`:(state.type==='COACH'?'Tên folder coaching':'Tên chuẩn');
+  const L=$('r-list');L.hidden=n<=1;L.innerHTML='';list.forEach(x=>{const s=document.createElement('span');s.textContent=x;L.appendChild(s)});
+  $('r-path').textContent=cur.path;
+  $('b-copy').textContent=n>1?`Copy ${n} tên`:'Copy tên';
+}
+function copy(text,btn,label,selEl){
+  const done=()=>{btn.textContent='Đã copy';setTimeout(()=>btn.textContent=label,1400)};
+  const fb=()=>{if(selEl){const r=document.createRange();r.selectNodeContents(selEl);const s=getSelection();s.removeAllRanges();s.addRange(r)}btn.textContent='Bấm Ctrl/Cmd + C'};
+  try{navigator.clipboard.writeText(text).then(done,fb)}catch(e){fb()}
+}
+$('b-copy').addEventListener('click',()=>{const l=$('b-copy').textContent;copy(cur.list.length?cur.list.join('\n'):cur.name,$('b-copy'),l,$('r-name'));remember(cur.list.length?cur.list[0]:cur.name)});
+$('b-copy-path').addEventListener('click',()=>copy(ROOT+'/'+cur.path.replace(/ › /g,'/'),$('b-copy-path'),'Copy đường dẫn folder',$('r-path')));
+['f-date','f-noday','f-desc','f-count','f-ext','f-studio','f-client','f-session'].forEach(i=>$(i).addEventListener('input',()=>{build();save()}));
+
+function save(){try{localStorage.setItem('qpb-state',JSON.stringify({...state,desc:$('f-desc').value}))}catch(e){}}
+function load(){try{const s=JSON.parse(localStorage.getItem('qpb-state')||'null');if(s){['type','kenh','series','tn'].forEach(k=>{if(s[k]!==undefined)state[k]=s[k]});if(typeof s.desc==='string')$('f-desc').value=s.desc}}catch(e){}}
+const getRecent=()=>{try{return JSON.parse(localStorage.getItem('qpb-recent')||'[]')}catch(e){return []}};
+function remember(n){try{localStorage.setItem('qpb-recent',JSON.stringify([n,...getRecent().filter(x=>x!==n)].slice(0,6)))}catch(e){}drawRecent()}
+function drawRecent(){const r=getRecent();$('recent-wrap').hidden=!r.length;const box=$('recent');box.innerHTML='';
+  r.forEach(n=>{const d=document.createElement('div');d.className='recent-item';d.innerHTML='<span></span><button type="button">Copy</button>';d.querySelector('span').textContent=n;
+  const b=d.querySelector('button');b.addEventListener('click',()=>copy(n,b,'Copy',d.querySelector('span')));box.appendChild(d)})}
+
+// ---------- KIỂM TRA ----------
+const CODES=['NNN','NSC','TXS','WS','CHUNG'];
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/đ/g,'d');
+function guessDate(s){let m;
+  if(m=s.match(/(20\d\d)[.\-\/]?(\d{2})[.\-\/]?(\d{2})/)) return {y:m[1],m:m[2],d:m[3],raw:m[0]};
+  if(m=s.match(/(\d{1,2})[.\/-](\d{1,2})[.\/-](\d{2,4})/)){let y=m[3].length===2?'20'+m[3]:m[3];return {y,m:pad(m[2]),d:pad(m[1]),raw:m[0]}}
+  return null}
+function suggest(raw){
+  const ext=(raw.match(/\.[a-z0-9]{2,4}$/i)||[''])[0].toLowerCase();
+  let s=raw.slice(0,raw.length-ext.length);const dt=guessDate(s);if(dt) s=s.replace(dt.raw,'');
+  const n=norm(s);
+  let k='KÊNH';if(/nsc|freetalk|consult/.test(n))k='NSC';else if(/tho xay|txs/.test(n))k='TXS';else if(/workshop|\bws\b/.test(n))k='WS';else if(/nnn|nghe nang nghe|decode/.test(n))k='NNN';
+  s=s.replace(/^[\s\d]{1,4}[._)\-]\s+/,'').replace(/^\d{2,4}_/,'').replace(/\s+-\s+/g,' ').replace(/[_\/\\:*?"<>|]+/g,' ').replace(/\s+/g,' ').trim();
+  const dp=dt?`${dt.y}.${dt.m}.${dt.d}`:'NĂM.THÁNG.NGÀY';
+  return {text:`${dp}_${k}${s?'_'+s:''}${ext}`,unsure:!dt||k==='KÊNH'};
+}
+function check(line){
+  const raw=line.trim();if(!raw) return null;
+  const name=raw.replace(/\.[a-z0-9]{2,4}$/i,'');
+  if(/^20\d\d-\d{2}$/.test(name)) return {ok:true,raw,msg:['Đúng chuẩn tên folder tháng.']};
+  if(/^20\d\d$/.test(name)) return {ok:true,raw,msg:['Đúng chuẩn tên folder năm.']};
+  const p=name.split('_'),errs=[];
+  if(!/^20\d\d\.(0[1-9]|1[0-2])(\.(0[1-9]|[12]\d|3[01]))?$/.test(p[0]||'')) errs.push(`Ngày phải viết dạng 2026.11.02 (hoặc 2026.11). Đang là "${p[0]}".`);
+  else if(+p[0].slice(0,4)>new Date().getFullYear()) errs.push(`Năm ${p[0].slice(0,4)} ở tương lai, có thể gõ nhầm.`);
+  let coach=false;
+  if(p.length<3) errs.push('Thiếu phần: cần NGÀY_KÊNH_Mô tả, nối bằng dấu gạch dưới _.');
+  else if(!CODES.includes(p[1])){
+    if(/^[A-Z]{2,6}$/.test(p[1])) errs.push(`Kênh "${p[1]}" không hợp lệ. Dùng ${CODES.join(', ')}.`);
+    else coach=true;
+  }
+  if(/\s{2,}/.test(raw)) errs.push('Có khoảng trắng thừa.');
+  if(!errs.length) return {ok:true,raw,msg:[coach?'Đúng chuẩn nếu đây là folder coaching (NGÀY_Studio_Tên khách).':'Đúng chuẩn.']};
+  return {ok:false,raw,msg:errs,fix:suggest(raw)};
+}
+function runCheck(){
+  const out=$('c-out');out.innerHTML='';
+  $('c-in').value.split('\n').map(check).filter(Boolean).forEach(r=>{
+    const d=document.createElement('div');d.className='ck '+(r.ok?'ok':'bad');
+    d.innerHTML='<span class="v"></span><span class="n"></span><ul></ul>';
+    d.querySelector('.v').textContent=r.ok?'Đạt':'Chưa đạt';d.querySelector('.n').textContent=r.raw;
+    const ul=d.querySelector('ul');r.msg.forEach(m=>{const li=document.createElement('li');li.textContent=m;ul.appendChild(li)});
+    if(!r.ok){const f=document.createElement('div');f.className='fix';f.innerHTML='<span></span><button type="button">Copy gợi ý</button>';
+      f.querySelector('span').textContent='Gợi ý: '+r.fix.text;const b=f.querySelector('button');b.addEventListener('click',()=>copy(r.fix.text,b,'Copy gợi ý',f.querySelector('span')));d.appendChild(f);
+      if(r.fix.unsure){const s=document.createElement('ul');s.innerHTML='<li>Gợi ý đoán tự động. Thay chữ KÊNH hoặc NĂM.THÁNG.NGÀY bằng giá trị đúng trước khi dùng.</li>';d.appendChild(s)}}
+    out.appendChild(d)});
+}
+$('c-run').addEventListener('click',runCheck);
+function show(w){const mk=w==='make';$('tab-make').setAttribute('aria-selected',mk);$('tab-check').setAttribute('aria-selected',!mk);$('p-make').hidden=!mk;$('p-check').hidden=mk}
+$('tab-make').addEventListener('click',()=>show('make'));$('tab-check').addEventListener('click',()=>{show('check');runCheck()});
+
+$('f-date').value=todayISO();
+load();fixKenh();render();build();drawRecent();
+</script>
+
+</body></html>
